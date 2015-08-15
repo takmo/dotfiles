@@ -10,6 +10,9 @@ map <c-f> :NERDTreeToggle<CR>
 map <F8> :SyntasticCheck<CR>
 map <F12> :syntax off<CR>:set tw=80<CR>
 
+" No need to shift for commands.
+:nmap ; :
+
 " ----------------------------------------------
 "  General Settings
 
