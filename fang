@@ -1,0 +1,101 @@
+#!/usr/bin/python3
+import subprocess, os, shutil, time, sys
+
+server = "A server here"
+port = "22"
+folder = "the remote folder"
+url = "the end url"
+browser = "firefox"
+scrot_selection = "scrot -s"
+scrot_full = "scrot"
+
+#####################
+# Actual Code Below #
+#####################
+
+should_hash = False
+should_scrot = False
+should_full = False
+should_webpage = False
+filename = ""
+
+
+# Handle arguments. If -h is found, hash the filename.
+submitted_arguments = sys.argv
+
+for arg in submitted_arguments:
+    if arg == submitted_arguments[0]:
+        continue
+    if arg == "-d":
+        time.sleep(5)
+        continue
+    if arg == "-h":
+        should_hash = True
+        continue
+    if arg == "-s":
+        should_scrot = True
+        should_hash = True
+        continue
+    if arg == "-S":
+        should_scrot = True
+        should_full = True
+        should_hash = True
+    if arg == "-w":
+        should_webpage = True
+        continue
+    filename = arg
+
+# Print help text.
+if filename == "" and not should_scrot:
+    print("Usage: fang [-d] [-h] [-s/S] [-w] filename")
+    print("    -d = Add a 5 second delay before taking a picture")
+    print("    -h = hash filename before upload")
+    print("    -s = select area to be screenshotted before upload")
+    print("    -S = screenshot full screen and upload")
+    print("    -w = open webpage when upload is complete")
+    quit()
+
+
+# If should scrot
+if should_scrot:
+    command = ""
+    if should_full:
+        command = scrot_full
+    else:
+        command = scrot_selection
+    filename = "temp_upload_file.png"
+    command = command + " " + filename
+    subprocess.call(command.split())
+
+
+# Verify file exists.
+if not os.path.isfile(filename):
+    print("File not found.")
+    quit()
+
+
+# If should_hash
+if should_hash:
+    # Get file extension.
+    file_ext = os.path.splitext(filename)[1]
+    # Get file hash
+    file_hash = subprocess.check_output(["md5sum", filename], universal_newlines = True).split()[0][:8]
+    new_filename = file_hash + file_ext
+    # Make copy of file.
+    shutil.copyfile(filename, new_filename)
+    filename = new_filename
+
+
+# Upload file
+command = "scp -P " + port + " " + filename + " " + server + ":" + folder
+subprocess.call(command.split())
+if should_hash:
+    os.remove(filename)
+filename = url + filename
+print(filename)
+if should_webpage:
+    browser = browser + " " + filename
+    subprocess.call(browser.split())
+if should_scrot:
+    os.remove("temp_upload_file.png")
+
