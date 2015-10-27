@@ -10,6 +10,11 @@ map <c-f> :NERDTreeToggle<CR>
 map <F8> :SyntasticCheck<CR>
 map <F12> :syntax off<CR>:set tw=80<CR>
 
+" S-k opens man page, S-j merges two lines.
+" Since I don't use those... Better scrolling!!!
+nmap <S-k> Hkkkkk
+nmap <S-j> Ljjjjj
+
 " No need to shift for commands.
 :nmap ; :
 
