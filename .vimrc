@@ -1,34 +1,33 @@
 " ----------------------------------------------
-" Pathogen comes first. Always.
-
-execute pathogen#infect()
+" Vundle
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'vim-airline/vim-airline'        " Airline
+Plugin 'vim-airline/vim-airline-themes' "   (continued)
+Plugin 'bling/vim-bufferline'           " Bufferline
+Plugin 'tpope/vim-fugitive'             " Fugitive
+Plugin 'scrooloose/nerdcommenter'       " NerdCommenter
+Plugin 'arcticicestudio/nord-vim'       " Nord ColorScheme
+Plugin 'VundleVim/Vundle.vim'           " Vundle
+call vundle#end()
+filetype plugin indent on
 
 " ----------------------------------------------
 " Set the mappings here.
 
-map <c-f> :NERDTreeToggle<CR>
-map <F8> :SyntasticCheck<CR>
-map <F12> :syntax off<CR>:set tw=80<CR>
-
-" S-k opens man page, S-j merges two lines.
-" Since I don't use those... Better scrolling!!!
-nmap <S-k> Hkkkkk
-nmap <S-j> Ljjjjj
-
-" No need to shift for commands.
-:nmap ; :
+map <F12> :syntax off<CR>:set tw=80<CR> " Non-code writing mode.
+nmap <S-k> Hkkkkk                       " Scroll up really quickly.
+nmap <S-j> Ljjjjj                       " Scroll down really quickly.
+nmap ; :                                " Don't need to press shift!
 
 " ----------------------------------------------
 "  General Settings
 
 set notimeout ttimeout ttimeoutlen=200  " timeout quick on keycodes, not mappings
-let g:airline_powerline_fonts = 1       " airline powerline fonts for magic
-" NERDCommenter?
-cnoreabbrev cmt w
 
-set nocompatible                " vim not vi
-filetype indent plugin on       " indent
-filetype plugin on              " indent also, I think
+cnoreabbrev cmt w               " Something to do with NERDCommenter?
 syntax on                       " pretty colors
 set hidden                      " play nice when swapping buffers
 set wildmenu                    " happy completion
@@ -55,18 +54,15 @@ set smarttab                    " smart tabs?
 set history=100                 " history is important
 set undolevels=100              " because I mess up
 
-" Scons files are python, treat them as such
-autocmd BufNew,BufRead SConstruct setf python
-autocmd BufNew,BufRead SConscript setf python
-autocmd BufNew,BufRead *.scons setf python
-
 "------------------------------------------
-" Pretty themes!
+" Look pretty!
 
-set t_Co=256
-let base16colorspace=256  " Access colors present in 256 colorspace
-set background=dark
-colorscheme base16-ocean
+" Themes
+colorscheme nord
+let g:airline_theme='nord'
+
+" Airline Fonts
+let g:airline_powerline_fonts = 1
 
 " ----------------------------------------------
 
