@@ -1,8 +1,5 @@
-URxvt.background: #121212
-URxvt.foreground: #FFFFFF
-URxvt.scrollBar: true
-URxvt.scrollstyle: plain
-URxvt.scrollBar_right: true
+URxvt.scrollBar: false
 URxvt.modifier: mod4
-URxvt.font: xft:Sauce Code Powerline:size=9:antialias=true:hinting=true
-URxvt.letterSpace: -1
+URxvt.font: xft:Sauce Code Powerline:size=8:antialias=true:hinting=true
+
+#include "/home/randall/git/nord-xresources/src/nord"
