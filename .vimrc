@@ -17,10 +17,10 @@ filetype plugin indent on
 " ----------------------------------------------
 " Set the mappings here.
 
-map <F12> :syntax off<CR>:set tw=80<CR> " Non-code writing mode.
-nmap <S-k> Hkkkkk                       " Scroll up really quickly.
-nmap <S-j> Ljjjjj                       " Scroll down really quickly.
-nmap ; :                                " Don't need to press shift!
+map <F12> :syntax off<CR>:set tw=80<CR>|    " Non-code writing mode.
+nmap <S-k> Hkkkkk|                          " Scroll up really quickly.
+nmap <S-j> Ljjjjj|                          " Scroll down really quickly.
+nmap ; :|                                   " Don't need to press shift!
 
 " ----------------------------------------------
 "  General Settings
@@ -56,6 +56,9 @@ set undolevels=100              " because I mess up
 
 "------------------------------------------
 " Look pretty!
+
+" 256 colors
+set t_Co=256
 
 " Themes
 colorscheme nord
