@@ -6,8 +6,8 @@ sxhkd &
 # Set the default cursor
 xsetroot -cursor_name left_ptr
 
-# Compositing!
-compton &
+# Compositing! (maybe not right now)
+#compton &
 
 # List the monitors.
 bspc monitor -d one two three four five six seven eight nine ten
