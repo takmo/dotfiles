@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# Start the hotkey daemon.
+sxhkd &
+
+# Set the default cursor
+xsetroot -cursor_name left_ptr
+
+# Compositing!
+compton &
+
+# List the monitors.
+bspc monitor -d one two three four five six seven eight nine ten
+
+# Window gaps/borders.
+bspc config border_width 2
+bspc config window_gap 24
+bspc config split_ratio 0.52
+
+# Focus follows pointer.
+bspc config focus_follows_pointer true
