@@ -23,6 +23,10 @@ nmap <S-j> Ljjjjj|                          " Scroll down really quickly.
 nmap ; :|                                   " Don't need to press shift!
 
 " ----------------------------------------------
+" Automatically do things.
+autocmd BufWritePre * %s/\s\+$//e|          " Delete extra whitespace on save
+
+" ----------------------------------------------
 "  General Settings
 
 set notimeout ttimeout ttimeoutlen=200  " timeout quick on keycodes, not mappings
