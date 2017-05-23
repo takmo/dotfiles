@@ -57,7 +57,3 @@ alt + Tab
 # Select parent node.
 alt + {_,shift +} p
     bspc node -f parent
-
-# TODO - mouse for active?
-
-# TODO - resizing windows
