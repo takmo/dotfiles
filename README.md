@@ -6,6 +6,7 @@ something stupid like that...
 ## Required Software
 
 * Colors: [Nord](https://github.com/arcticicestudio/nord)
+* Font: [Source Code Pro](https://github.com/adobe-fonts/source-code-pro)
 * Background: feh
 * WM: [bspwm](https://github.com/baskerville/bspwm) + [sxkhd](https://github.com/baskerville/sxhkd)
 * Launcher: [Rofi](https://davedavenport.github.io/rofi/) + Custom-Configured Nord Colors
