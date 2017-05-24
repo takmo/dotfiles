@@ -13,6 +13,7 @@ something stupid like that...
 * Bar: [Polybar](https://github.com/jaagr/polybar)
 * Shell: zsh
 * Browser: Google Chrome
+* Lock: [i3lock-fancy](https://github.com/meskarune/i3lock-fancy)
 * Editor: Vim
     - [Vundle](https://github.com/VundleVim/Vundle.vim)
     - [Airline](https://github.com/vim-airline/vim-airline) + [Themes](https://github.com/vim-airline/vim-airline-themes)
@@ -23,6 +24,5 @@ something stupid like that...
 
 ## Future Goals
 
-1. Add i3lock.
-2. Maybe Ansible?
-3. Spotify on Polybar.
+1. Maybe Ansible?
+2. Spotify on Polybar.

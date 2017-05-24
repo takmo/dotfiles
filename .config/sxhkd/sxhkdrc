@@ -18,6 +18,10 @@ alt + {_,shift +} r
 alt + {_,shift +} f
     google-chrome
 
+# Lockscreen
+alt + {_,shift +} l
+    lock
+
 #####
 # BSPWM Hotkeys
 #####
