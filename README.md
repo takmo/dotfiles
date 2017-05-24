@@ -6,10 +6,13 @@ something stupid like that...
 ## Required Software
 
 * Colors: [Nord](https://github.com/arcticicestudio/nord)
+* Background: feh
 * WM: [bspwm](https://github.com/baskerville/bspwm) + [sxkhd](https://github.com/baskerville/sxhkd)
 * Launcher: [Rofi](https://davedavenport.github.io/rofi/) + Custom-Configured Nord Colors
 * Compositor: [Compton](https://github.com/chjj/compton) (maybe?)
+* Bar: [Polybar](https://github.com/jaagr/polybar)
 * Shell: zsh
+* Browser: Google Chrome
 * Editor: Vim
     - [Vundle](https://github.com/VundleVim/Vundle.vim)
     - [Airline](https://github.com/vim-airline/vim-airline) + [Themes](https://github.com/vim-airline/vim-airline-themes)
@@ -20,6 +23,6 @@ something stupid like that...
 
 ## Future Goals
 
-1. Add Polybar.
-2. Add i3lock.
-3. Maybe Ansible?
+1. Add i3lock.
+2. Maybe Ansible?
+3. Spotify on Polybar.
