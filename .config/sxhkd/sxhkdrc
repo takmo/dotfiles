@@ -19,7 +19,7 @@ alt + {_,shift +} f
     google-chrome
 
 # Lockscreen
-alt + {_,shift +} l
+alt + {_,shift +} BackSpace
     lock
 
 #####

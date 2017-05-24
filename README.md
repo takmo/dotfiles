@@ -12,6 +12,7 @@ something stupid like that...
 * Launcher: [Rofi](https://davedavenport.github.io/rofi/) + Custom-Configured Nord Colors
 * Compositor: [Compton](https://github.com/chjj/compton) (maybe?)
 * Bar: [Polybar](https://github.com/jaagr/polybar)
+* Terminal: rxvt-unicode-256color
 * Shell: zsh
 * Browser: Google Chrome
 * Lock: [i3lock-fancy](https://github.com/meskarune/i3lock-fancy)

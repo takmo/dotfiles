@@ -1,6 +1,6 @@
 URxvt.scrollBar: false
 URxvt.modifier: mod4
-URxvt.font: xft:Sauce Code Powerline:size=8:antialias=true:hinting=true
+URxvt.font: xft:Source\ Code\ Pro\ for\ Powerline:size=8:antialias=true:hinting=true
 
 #include "/home/randall/git/nord-xresources/src/nord"
 
