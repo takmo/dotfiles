@@ -70,9 +70,9 @@ foreground = ${colors.nord4}
 
 bottom = true
 height = 24
-width = 1872
-offset-x = 24
-offset-y = 12
+width = 1896
+offset-x = 12
+offset-y = 0
 border-size = 2
 border-color = #000000
 line-size = 2
