@@ -61,10 +61,9 @@ set undolevels=100              " because I mess up
 "------------------------------------------
 " Look pretty!
 
-" 256 colors
-set t_Co=256
-
 " Themes
+set t_Co=256
+set background=light
 colorscheme nord
 let g:airline_theme='nord'
 
