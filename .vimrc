@@ -7,8 +7,10 @@ call vundle#begin()
 Plugin 'vim-airline/vim-airline'        " Airline
 Plugin 'vim-airline/vim-airline-themes' "   (continued)
 Plugin 'bling/vim-bufferline'           " Bufferline
+Plugin 'ctrlpvim/ctrlp.vim'             " CtrlP Fuzzy Finder
 Plugin 'tpope/vim-fugitive'             " Fugitive
 Plugin 'scrooloose/nerdcommenter'       " NerdCommenter
+Plugin 'scrooloose/nerdtree'            " NerdTree File Explorer
 Plugin 'arcticicestudio/nord-vim'       " Nord ColorScheme
 Plugin 'VundleVim/Vundle.vim'           " Vundle
 call vundle#end()
@@ -18,6 +20,7 @@ filetype plugin indent on
 " Set the mappings here.
 
 map <F12> :syntax off<CR>:set tw=80<CR>|    " Non-code writing mode.
+map <C-f> :NERDTreeToggle<CR>|              " Open NerdTree Browser
 nmap <S-k> Hkkkkk|                          " Scroll up really quickly.
 nmap <S-j> Ljjjjj|                          " Scroll down really quickly.
 nmap ; :|                                   " Don't need to press shift!
