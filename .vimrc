@@ -57,6 +57,7 @@ set number                      " show line numbers
 set expandtab                   " spaces >>>>>> tabs
 set shiftwidth=4                " ^^
 set softtabstop=4               " ^^
+set tabstop=4                   " but when we have tabs, display them as 4 spaces
 set smarttab                    " smart tabs?
 set history=100                 " history is important
 set undolevels=100              " because I mess up
