@@ -1,8 +1,10 @@
 # setup Vundle and TPM if necessary
 if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
+    echo "Vundle for Vim not currently installed. Let's fix that..."
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
 if [ ! -d ~/.tmux/plugins/tpm ]; then
+    echo "TMUX Plugin Manager not currently installed. Let's fix that..."
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
@@ -27,6 +29,8 @@ compinit
 # prompt
 promptinit
 prompt redhat
+PROMPT="%(!.ROOT .)%~ %% "
+RPROMPT=""
 
 # local settings
 if [ ! -e ~/.local.zshrc ]; then
