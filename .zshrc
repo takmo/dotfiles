@@ -17,6 +17,7 @@ promptinit
 prompt redhat
 
 export GOPATH="$HOME/go"
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre/
 export PATH="$PATH:$HOME/.rvm/bin:$GOPATH/bin"
 
 # weird umask for windows subsystem for linux
