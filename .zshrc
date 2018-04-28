@@ -28,7 +28,6 @@ compinit
 
 # prompt
 promptinit
-prompt redhat
 PROMPT="%(!.ROOT .)%~ %% "
 RPROMPT=""
 
