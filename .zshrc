@@ -12,6 +12,10 @@ fi
 alias ls="ls --color"
 alias please='sudo $(fc -n -l -1)';
 
+# important exports
+export TERM=xterm-256color
+export EDITOR=vim
+
 # history
 HISTFILE=~/.histfile
 HISTSIZE=1000
