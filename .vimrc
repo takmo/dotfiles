@@ -13,7 +13,6 @@ Plugin 'junegunn/goyo.vim'              " Literature mode
 Plugin 'mileszs/ack.vim'                " Ack search
 Plugin 'scrooloose/nerdcommenter'       " NerdCommenter
 Plugin 'scrooloose/nerdtree'            " NerdTree File Explorer
-Plugin 'tpope/vim-commentary'           " Commenter (gcc)
 Plugin 'tpope/vim-fugitive'             " Fugitive
 Plugin 'tpope/vim-sensible'             " Sensible defaults for Vim
 Plugin 'tpope/vim-surround'             " Surround stuff
@@ -61,7 +60,6 @@ set tabstop=4                   " but when we have tabs, display them as 4 space
 "------------------------------------------
 " Look pretty!
 
-" Themes
 set t_Co=256
 set background=light
 colorscheme nord
