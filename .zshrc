@@ -1,7 +1,11 @@
+# WSL needs umask
+umask 22
+
 # setup Vundle and TPM if necessary
 if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
     echo "Vundle for Vim not currently installed. Let's fix that..."
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    vim -c ":PluginInstall" -c ":q\!" -c ":q\!" -T dumb
 fi
 if [ ! -d ~/.tmux/plugins/tpm ]; then
     echo "TMUX Plugin Manager not currently installed. Let's fix that..."
@@ -34,10 +38,3 @@ compinit
 promptinit
 PROMPT="%(!.ROOT .)%~ %% "
 RPROMPT=""
-
-# local settings
-if [ ! -e ~/.local.zshrc ]; then
-    touch ~/.local.zshrc
-    echo "# put your system-specific config here" >> ~/.local.zshrc
-fi
-source ~/.local.zshrc
