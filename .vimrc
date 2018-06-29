@@ -61,5 +61,10 @@ set tabstop=4                   " but when we have tabs, display them as 4 space
 " Look pretty!
 
 let g:airline_powerline_fonts = 1
-colorscheme nord
+
+" currently broken in TMUX - not sure why
+"set termguicolors
+"let g:nord_comment_brightness = 20
+
 let g:airline_theme='nord'
+colorscheme nord
