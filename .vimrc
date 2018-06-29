@@ -5,8 +5,8 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'airblade/vim-gitgutter'         " Show git modifications in gutter
+Plugin 'arcticicestudio/nord-vim'       " Nord ColorScheme
 Plugin 'bling/vim-bufferline'           " Buffers in the status line
-Plugin 'rakr/vim-two-firewatch'
 Plugin 'ctrlpvim/ctrlp.vim'             " CtrlP Fuzzy Finder
 Plugin 'fatih/vim-go'                   " Go utilities
 Plugin 'jeetsukumaran/vim-buffergator'  " Buffer exploring with \b
@@ -60,8 +60,6 @@ set tabstop=4                   " but when we have tabs, display them as 4 space
 "------------------------------------------
 " Look pretty!
 
-set termguicolors
 let g:airline_powerline_fonts = 1
-set background=dark
-colorscheme two-firewatch
-let g:airline_theme='twofirewatch'
+colorscheme nord
+let g:airline_theme='nord'

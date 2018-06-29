@@ -5,7 +5,7 @@ something stupid like that...
 
 ## Required Software
 
-* Colors: [Two Firewatch](https://github.com/rakr/vim-two-firewatch)
+* Colors: [Nord](https://github.com/arcticicestudio/nord)
 * Font: [Source Code Pro](https://github.com/adobe-fonts/source-code-pro)
 * Background: feh
 * WM: [bspwm](https://github.com/baskerville/bspwm) + [sxkhd](https://github.com/baskerville/sxhkd)
@@ -22,4 +22,4 @@ something stupid like that...
     - [Bufferline](https://github.com/bling/vim-bufferline)
     - [Fugitive](https://github.com/tpope/vim-fugitive)
     - [NERD Commenter](https://github.com/scrooloose/nerdcommenter)
-    - [Vim Two Firewatch](https://github.com/rakr/vim-two-firewatch)
+    - [Nord Colors for Vim](https://github.com/arcticicestudio/nord-vim)
