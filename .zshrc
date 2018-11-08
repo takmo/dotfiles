@@ -28,7 +28,7 @@ SAVEHIST=1000
 # options
 setopt autocd               # automatically change direcotories
 unsetopt beep extendedglob  # don't beep, don't extendedglob?
-bindkey -e                  # emacs style key bindings?
+bindkey -v                  # vim style keybindings
 
 # autocompletion
 autoload -Uz compinit promptinit
