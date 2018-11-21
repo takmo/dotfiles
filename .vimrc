@@ -8,6 +8,7 @@ Plugin 'airblade/vim-gitgutter'         " Show git modifications in gutter
 Plugin 'arcticicestudio/nord-vim'       " Nord ColorScheme
 Plugin 'bling/vim-bufferline'           " Buffers in the status line
 Plugin 'ctrlpvim/ctrlp.vim'             " CtrlP Fuzzy Finder
+Plugin 'elixir-editors/vim-elixir'      " Elixir editor things
 Plugin 'fatih/vim-go'                   " Go utilities
 Plugin 'jeetsukumaran/vim-buffergator'  " Buffer exploring with \b
 Plugin 'junegunn/goyo.vim'              " Literature mode

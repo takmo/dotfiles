@@ -38,3 +38,7 @@ compinit
 promptinit
 PROMPT="%(!.ROOT .)%~ %% "
 RPROMPT=""
+
+# set the dircolors
+d=.dircolors
+test -r $d && eval "$(dircolors $d)"
