@@ -14,6 +14,7 @@ fi
 
 # aliases
 alias ls="ls --color"
+alias nv="nvim"
 alias please='sudo $(fc -n -l -1)';
 
 # important exports
