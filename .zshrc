@@ -13,8 +13,8 @@ if [ ! -d ~/.tmux/plugins/tpm ]; then
 fi
 
 # aliases
-alias ls="ls --color"
 alias nv="nvim"
+alias ls="ls -G"
 alias please='sudo $(fc -n -l -1)';
 
 # important exports
@@ -42,4 +42,14 @@ RPROMPT=""
 
 # set the dircolors
 d=.dircolors
-test -r $d && eval "$(dircolors $d)"
+# test -r $d && eval "$(dircolors $d)"
+
+if [[ -f "${HOME}/.config/cloudtoken/bashrc_additions" ]]; then
+    source "${HOME}/.config/cloudtoken/bashrc_additions"
+fi
+
+if [[ -f "${HOME}/.config/cloudtoken/bashrc_additions" ]]; then
+    source "${HOME}/.config/cloudtoken/bashrc_additions"
+fi
+
+source ~/.profile

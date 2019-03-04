@@ -6,12 +6,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'airblade/vim-gitgutter'         " Show git modifications in gutter
 Plugin 'arcticicestudio/nord-vim'       " Nord ColorScheme
-Plugin 'bling/vim-bufferline'           " Buffers in the status line
 Plugin 'ctrlpvim/ctrlp.vim'             " CtrlP Fuzzy Finder
 Plugin 'elixir-editors/vim-elixir'      " Elixir editor things
 Plugin 'fatih/vim-go'                   " Go utilities
 Plugin 'jeetsukumaran/vim-buffergator'  " Buffer exploring with \b
-Plugin 'junegunn/goyo.vim'              " Literature mode
+Plugin 'leafgarland/typescript-vim'     " TypeScript stuff
 Plugin 'mileszs/ack.vim'                " Ack search
 Plugin 'scrooloose/nerdcommenter'       " NerdCommenter
 Plugin 'scrooloose/nerdtree'            " NerdTree File Explorer
@@ -54,9 +53,15 @@ set mouse=n                     " no mouse - my trackpad is angry
 set cmdheight=2                 " command window height is two
 set number                      " show line numbers
 set expandtab                   " spaces >>>>>> tabs
-set shiftwidth=4                " ^^
-set softtabstop=4               " ^^
-set tabstop=4                   " but when we have tabs, display them as 4 spaces
+set shiftwidth=2                " ^^
+set softtabstop=2               " ^^
+set tabstop=2                   " but when we have tabs, display them as 2 spaces
+
+"------------------------------------------
+" misc plugin settings
+
+let g:buffergator_autodismiss_on_select = 0
+let g:buffergator_autoupdate = 1
 
 "------------------------------------------
 " Look pretty!
@@ -64,8 +69,9 @@ set tabstop=4                   " but when we have tabs, display them as 4 space
 let g:airline_powerline_fonts = 1
 
 " currently broken in TMUX - not sure why
-"set termguicolors
-"let g:nord_comment_brightness = 20
+set termguicolors
+let g:nord_comment_brightness = 20
 
-let g:airline_theme='nord'
+"let g:airline_theme='nord'
 colorscheme nord
+let g:airline_theme='nord'
