@@ -1,33 +1,38 @@
 " ----------------------------------------------
-" plugins / vundle
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'airblade/vim-gitgutter'         " Show git modifications in gutter
-Plugin 'arcticicestudio/nord-vim'       " Nord ColorScheme
-Plugin 'ctrlpvim/ctrlp.vim'             " CtrlP Fuzzy Finder
-Plugin 'elixir-editors/vim-elixir'      " Elixir editor things
-Plugin 'fatih/vim-go'                   " Go utilities
-Plugin 'jeetsukumaran/vim-buffergator'  " Buffer exploring with \b
-Plugin 'leafgarland/typescript-vim'     " TypeScript stuff
-Plugin 'mileszs/ack.vim'                " Ack search
-Plugin 'scrooloose/nerdcommenter'       " NerdCommenter
-Plugin 'scrooloose/nerdtree'            " NerdTree File Explorer
-Plugin 'tpope/vim-fugitive'             " Fugitive
-Plugin 'tpope/vim-sensible'             " Sensible defaults for Vim
-Plugin 'vim-airline/vim-airline'        " Airline
-Plugin 'vim-airline/vim-airline-themes' "   (continued)
-Plugin 'VundleVim/Vundle.vim'           " Vundle
-call vundle#end()
-filetype plugin indent on
+" install vim-plug
+"
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" ----------------------------------------------
+" plugins
+"
+call plug#begin('~/.vim/plugged')
+
+Plug 'ctrlpvim/ctrlp.vim'             " CtrlP Fuzzy Finder
+Plug 'mileszs/ack.vim'                " Ack search
+Plug 'tpope/vim-commentary'           " Comment things
+Plug 'tpope/vim-surround'             " Surround things
+
+Plug 'elixir-editors/vim-elixir'      " Elixir editor things
+Plug 'ElmCast/elm-vim'                " Elm language support
+Plug 'slashmili/alchemist.vim'        " Alchemist
+
+Plug 'arcticicestudio/nord-vim'       " Nord ColorScheme
+Plug 'vim-airline/vim-airline'        " Airline
+Plug 'vim-airline/vim-airline-themes' "   (continued)
+
+call plug#end()
 
 " ----------------------------------------------
 " mappings
 
-map <F12> :syntax off<CR>:set tw=80<CR>|    " Non-code writing mode.
-map <C-f> :NERDTreeToggle<CR>|              " Open NerdTree Browser
-nmap ; :|                                   " Don't need to press shift!
+map <C-j> :bp<CR>|       " switch tabs easily
+map <C-k> :bn<CR>|       " switch tabs easily
+nmap ; :|                " Don't need to press shift!
 
 " ----------------------------------------------
 " automatic exeuctions
@@ -37,31 +42,11 @@ autocmd BufWritePre * %s/\s\+$//e|          " Delete trailing whitespace on save
 " ----------------------------------------------
 "  general settings
 
-set notimeout ttimeout ttimeoutlen=200  " timeout quick on keycodes, not mappings
-
-cnoreabbrev cmt w               " Something to do with NERDCommenter?
-set hidden                      " play nice when swapping buffers
-set showcmd                     " show partial commands?
-set hlsearch                    " hilight search
-set ignorecase                  " ignore case by default with search
-set smartcase                   " unless you specify case
-set nostartofline               " don't restart line on a command
-set confirm                     " confirm unsaved files
-set visualbell                  " please no beeping
-set t_vb=                       " like seriously no
-set mouse=n                     " no mouse - my trackpad is angry
-set cmdheight=2                 " command window height is two
-set number                      " show line numbers
-set expandtab                   " spaces >>>>>> tabs
-set shiftwidth=2                " ^^
-set softtabstop=2               " ^^
-set tabstop=2                   " but when we have tabs, display them as 2 spaces
-
-"------------------------------------------
-" misc plugin settings
-
-let g:buffergator_autodismiss_on_select = 0
-let g:buffergator_autoupdate = 1
+set confirm hidden                " do not discard unsaved changes
+set ignorecase smartcase          " search casing rules
+set mouse=n                       " make trackpad not hate me
+set number                        " line numbers
+set sw=2 sts=2 ts=2 expandtab     " set tabs
 
 "------------------------------------------
 " Look pretty!
@@ -69,8 +54,8 @@ let g:buffergator_autoupdate = 1
 let g:airline_powerline_fonts = 1
 
 " currently broken in TMUX - not sure why
-set termguicolors
-let g:nord_comment_brightness = 20
+"set termguicolors
+"let g:nord_comment_brightness = 20
 
 "let g:airline_theme='nord'
 colorscheme nord

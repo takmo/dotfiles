@@ -2,10 +2,9 @@
 umask 22
 
 # setup Vundle and TPM if necessary
-if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
-    echo "Vundle for Vim not currently installed. Let's fix that..."
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    vim -c ":PluginInstall" -c ":q!" -c ":q!" -T dumb
+if [ ! -d ~/.vim/autoload/ ]; then
+    echo "Vim-Plug not currently installed. Let's fix that..."
+    vim -c ":PlugInstall" -c ":q!" -c ":q!"
 fi
 if [ ! -d ~/.tmux/plugins/tpm ]; then
     echo "TMUX Plugin Manager not currently installed. Let's fix that..."
@@ -13,8 +12,9 @@ if [ ! -d ~/.tmux/plugins/tpm ]; then
 fi
 
 # aliases
-alias nv="nvim"
-alias ls="ls -G"
+alias n="nvim"
+alias vim="nvim"
+alias ls="ls --color"
 alias please='sudo $(fc -n -l -1)';
 
 # important exports
@@ -42,14 +42,6 @@ RPROMPT=""
 
 # set the dircolors
 d=.dircolors
-# test -r $d && eval "$(dircolors $d)"
-
-if [[ -f "${HOME}/.config/cloudtoken/bashrc_additions" ]]; then
-    source "${HOME}/.config/cloudtoken/bashrc_additions"
-fi
-
-if [[ -f "${HOME}/.config/cloudtoken/bashrc_additions" ]]; then
-    source "${HOME}/.config/cloudtoken/bashrc_additions"
-fi
+test -r $d && eval "$(dircolors $d)"
 
 source ~/.profile
