@@ -14,8 +14,9 @@ fi
 # aliases
 alias n="nvim"
 alias vim="nvim"
-alias ls="ls --color"
-alias please='sudo $(fc -n -l -1)';
+alias ls="ls -G"
+alias please='sudo $(fc -n -l -1)'
+alias x="cd ~"
 
 # important exports
 export TERM=xterm-256color
@@ -45,3 +46,5 @@ d=.dircolors
 test -r $d && eval "$(dircolors $d)"
 
 source ~/.profile
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
