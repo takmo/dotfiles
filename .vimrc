@@ -12,7 +12,9 @@ endif
 "
 call plug#begin('~/.vim/plugged')
 
+Plug 'airblade/vim-gitgutter'         " Git gutter
 Plug 'ctrlpvim/ctrlp.vim'             " CtrlP Fuzzy Finder
+Plug 'dense-analysis/ale'
 Plug 'mileszs/ack.vim'                " Ack search
 Plug 'tpope/vim-commentary'           " Comment things
 Plug 'tpope/vim-fugitive'             " Git
@@ -47,11 +49,16 @@ set ignorecase smartcase          " search casing rules
 set mouse=n                       " make trackpad not hate me
 set sw=2 sts=2 ts=2 expandtab     " set tabs
 
+" ----------------------------------------------
+"  plugin settings
+"
+let g:ale_sign_column_always = 1
+set signcolumn=yes
+
 "------------------------------------------
 " Look pretty!
 "
 set termguicolors
 colorscheme onehalflight
 set statusline=%=Line\ %l\ of\ %L\ in\ %f\ %m\%=
-set foldcolumn=4
 hi StatusLine ctermfg=247 ctermbg=255 guifg=#a0a1a7 guibg=#f0f0f0
