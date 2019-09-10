@@ -1,6 +1,6 @@
 " ----------------------------------------------
 " install vim-plug
-"
+
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -9,7 +9,7 @@ endif
 
 " ----------------------------------------------
 " plugins
-"
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter'         " Git gutter
@@ -23,6 +23,10 @@ Plug 'tpope/vim-surround'             " Surround things
 Plug 'elixir-editors/vim-elixir'      " Elixir editor things
 Plug 'ElmCast/elm-vim'                " Elm language support
 Plug 'slashmili/alchemist.vim'        " Alchemist
+
+Plug 'leafgarland/typescript-vim'
+
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 Plug 'sonph/onehalf', {'rtp': 'vim/'} " theme
 Plug 'junegunn/goyo.vim'              " pretty layout
@@ -51,13 +55,14 @@ set sw=2 sts=2 ts=2 expandtab     " set tabs
 
 " ----------------------------------------------
 "  plugin settings
-"
+
 let g:ale_sign_column_always = 1
+
 set signcolumn=yes
 
 "------------------------------------------
 " Look pretty!
-"
+
 set termguicolors
 colorscheme onehalflight
 set statusline=%=Line\ %l\ of\ %L\ in\ %f\ %m\%=
