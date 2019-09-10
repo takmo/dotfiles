@@ -30,6 +30,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 Plug 'sonph/onehalf', {'rtp': 'vim/'} " theme
 Plug 'junegunn/goyo.vim'              " pretty layout
+Plug 'junegunn/limelight.vim'         " dim inactive paragraphs
 
 call plug#end()
 
@@ -60,10 +61,29 @@ let g:ale_sign_column_always = 1
 
 set signcolumn=yes
 
+let g:goyo_width = 105
+let g:goyo_height = '95%'
+let g:limelight_paragraph_span = 2
+
+function! s:goyo_enter()
+  set tw=100
+  set spell
+  Limelight
+endfunction
+
+function! s:goyo_leave()
+  set tw=0
+  set nospell
+  Limelight!
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
 "------------------------------------------
 " Look pretty!
 
 set termguicolors
 colorscheme onehalflight
-set statusline=%=Line\ %l\ of\ %L\ in\ %f\ %m\%=
+set statusline=%=Line\ %l\ of\ %L\ at\ Column\ %c\ in\ %f\ %m\%=
 hi StatusLine ctermfg=247 ctermbg=255 guifg=#a0a1a7 guibg=#f0f0f0
