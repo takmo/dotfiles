@@ -1,0 +1,63 @@
+---
+- name: Add Required Repositories
+  hosts: localhost
+  become: true
+  become_user: root
+  tasks:
+    - name: Add Aptitude Repositories
+      when: ansible_facts['os_family'] == "Debian"
+      shell: >
+        wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb
+
+- name: Upgrade Base System
+  hosts: localhost
+  become: true
+  become_user: root
+  tasks:
+
+    - name: Upgrade Existing Aptitude Packages
+      when: ansible_facts['os_family'] == "Debian"
+      apt:
+        update_cache: true
+        upgrade: true
+
+    - name: Upgrade Existing Pacman Packages
+      when: ansible_facts['os_family'] == "Archlinux"
+      pacman:
+        update_cache: true
+        upgrade: true
+
+    - name: Upgrade Existing Homebrew Packages
+      when: ansible_facts['os_family'] == "Darwin"
+      homebrew:
+        update_homebrew: true
+        upgrade_all: true
+
+- name: Install Packages
+  hosts: localhost
+  become: true
+  become_user: root
+  vars:
+    packages: "elixir git neovim sudo tmux zsh"
+  tasks:
+
+    - name: Install Aptitude Packages
+      when: ansible_facts['os_family'] == "Debian"
+      apt:
+        name: "esl-erlang {{packages}} python-neovim python3-neovim"
+
+    - name: Install Pacman Packages
+      when: ansible_facts['os_family'] == "Archlinux"
+      pacman:
+        name: "{{packages}} python-neovim"
+
+    - name: Install Homebrew Packages
+      when: ansible_facts['os_family'] == "Darwin"
+      homebrew:
+        name: "{{packages}} python-neovim"
+
+    - name: Install Node Version Manager
+      shell: >
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | zsh
+      args:
+        creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
