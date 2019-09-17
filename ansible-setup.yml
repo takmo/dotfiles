@@ -1,25 +1,13 @@
 ---
-- name: Add Required Repositories
-  hosts: localhost
-  become: true
-  become_user: root
-  tasks:
-    - name: Add Aptitude Repositories
-      when: ansible_facts['os_family'] == "Debian"
-      shell: >
-        wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb
-
 - name: Upgrade Base System
   hosts: localhost
-  become: true
-  become_user: root
   tasks:
 
-    - name: Upgrade Existing Aptitude Packages
-      when: ansible_facts['os_family'] == "Debian"
-      apt:
+    - name: Upgrade Existing Fedora Packages
+      when: ansible_facts['os_family'] == "RedHat"
+      dnf:
         update_cache: true
-        upgrade: true
+        update_only: true
 
     - name: Upgrade Existing Pacman Packages
       when: ansible_facts['os_family'] == "Archlinux"
@@ -35,16 +23,14 @@
 
 - name: Install Packages
   hosts: localhost
-  become: true
-  become_user: root
   vars:
     packages: "elixir git neovim sudo tmux zsh"
   tasks:
 
-    - name: Install Aptitude Packages
-      when: ansible_facts['os_family'] == "Debian"
-      apt:
-        name: "esl-erlang {{packages}} python-neovim python3-neovim"
+    - name: Install Fedora Packages
+      when: ansible_facts['os_family'] == "RedHat"
+      dnf:
+        name: "elixir, git, neovim, sudo, tmux, zsh"
 
     - name: Install Pacman Packages
       when: ansible_facts['os_family'] == "Archlinux"
@@ -61,3 +47,79 @@
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | zsh
       args:
         creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+
+- name: Customize Home Directory
+  hosts: localhost
+  become: true
+  vars:
+    username: "randall"
+  tasks:
+
+    - name: Passwordless Sudo for Wheel
+      lineinfile:
+        dest: /etc/sudoers
+        state: present
+        regexp: '^%wheel'
+        line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+
+    - name: Create User in Wheel
+      user:
+        create_home: true
+        name: "{{username}}"
+        shell: "/bin/zsh"
+        groups: wheel
+
+    - name: Clone Dotfiles
+      become_user: "{{username}}"
+      git:
+        repo: https://github.com/Takmo/dotfiles.git
+        dest: "/home/{{username}}/dotfiles"
+
+    - name: Create Dotfile Directories
+      become_user: "{{username}}"
+      file:
+        state: directory
+        recurse: true
+        path: "/home/{{username}}/{{item}}"
+      with_items:
+        - ".config/nvim"
+        - ".ssh"
+
+    - name: Link to Dotfiles
+      become_user: "{{username}}"
+      file:
+        state: link
+        force: true
+        path: "/home/{{username}}/{{item}}"
+        src: "/home/{{username}}/dotfiles/{{item}}"
+      with_items:
+        - ".config/nvim/init.vim"
+        - ".tmux.conf"
+        - ".vimrc"
+        - ".zshrc"
+
+    - name: Download SSH Keys
+      become_user: "{{username}}"
+      get_url:
+        url: "https://github.com/Takmo.keys"
+        dest: "/home/{{username}}/.ssh/authorized_keys"
+
+# shamelessly stolen: https://github.com/vitalk/ansible-secure-ssh/
+- name: Lockdown SSH
+  hosts: localhost
+  vars:
+    sshd_config: "/etc/ssh/sshd_config"
+  tasks:
+
+    - name: Disable empty password login
+      lineinfile: dest={{ sshd_config }} regexp="^#?PermitEmptyPasswords" line="PermitEmptyPasswords no"
+
+    - name: Disable remote root login
+      lineinfile: dest={{ sshd_config }} regexp="^#?PermitRootLogin" line="PermitRootLogin no"
+
+    - name: Disable password login
+      lineinfile: dest={{ sshd_config }} regexp="^(#\s*)?PasswordAuthentication " line="PasswordAuthentication no"
+
+    - name: Restart SSH
+      service: name=sshd state=restarted
