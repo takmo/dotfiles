@@ -1,0 +1,42 @@
+---
+# common setup for servers
+
+- name: setup passwordless sudo access for the wheel group
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%wheel'
+    line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+
+- name: create non-admin user in wheel group
+  user:
+    create_home: true
+    name: "{{username}}"
+    shell: "/bin/zsh"
+    groups: wheel
+
+- name: create .ssh directory for new user
+  become_user: "{{username}}"
+  file:
+    state: directory
+    recurse: true
+    path: "/home/{{username}}/.ssh"
+
+- name: use github.com/takmo.keys for authorized_keys
+  become_user: "{{username}}"
+  get_url:
+    url: "https://github.com/takmo.keys"
+    dest: "/home/{{username}}/.ssh/authorized_keys"
+
+- name: disable empty password login over ssh
+  lineinfile: dest={{ sshd_config }} regexp="^#?PermitEmptyPasswords" line="PermitEmptyPasswords no"
+
+- name: disable root login over ssh
+  lineinfile: dest={{ sshd_config }} regexp="^#?PermitRootLogin" line="PermitRootLogin no"
+
+- name: disable password login over ssh
+  lineinfile: dest={{ sshd_config }} regexp="^(#\s*)?PasswordAuthentication " line="PasswordAuthentication no"
+
+- name: restart ssh
+  service: name=sshd state=restarted

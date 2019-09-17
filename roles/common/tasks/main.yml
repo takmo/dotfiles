@@ -1,0 +1,36 @@
+---
+# common setup for all profiles
+
+- name: clone dotfiles
+  become_user: "{{username}}"
+  git:
+    repo: https://github.com/Takmo/dotfiles.git
+    dest: "/home/{{username}}/dotfiles"
+
+- name: create dotfile directories
+  become_user: "{{username}}"
+  file:
+    state: directory
+    recurse: true
+    path: "/home/{{username}}/{{item}}"
+  with_items:
+    - ".config/nvim"
+
+- name: link to all dotfiles
+  become_user: "{{username}}"
+  file:
+    state: link
+    force: true
+    path: "/home/{{username}}/{{item}}"
+    src: "/home/{{username}}/dotfiles/{{item}}"
+  with_items:
+    - ".config/nvim/init.vim"
+    - ".tmux.conf"
+    - ".vimrc"
+    - ".zshrc"
+
+- name: install node version manager
+  shell: >
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | zsh
+  args:
+    creates: "/home/{{username}}/.nvm/nvm.sh"

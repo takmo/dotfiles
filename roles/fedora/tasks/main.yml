@@ -1,0 +1,11 @@
+---
+# profile for Fedora-specific setup
+
+- name: upgrade existing Fedora packages
+  dnf:
+    update_cache: true
+    update_only: true
+
+- name: install Fedora packages
+  dnf:
+    name: "elixir, git, neovim, sudo, tmux, zsh"

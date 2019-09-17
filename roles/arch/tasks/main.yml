@@ -1,0 +1,11 @@
+---
+# profile for Arch-specific setup
+
+- name: upgrade existing Pacman packages
+  pacman:
+    update_cache: true
+    upgrade: true
+
+- name: install select Pacman packages
+  pacman:
+    name: "elixir git neovim python-neovim sudo tmux zsh"

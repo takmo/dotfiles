@@ -1,0 +1,11 @@
+---
+# profile for OSX-specific setup
+
+- name: upgrade existing Homebrew packages
+  homebrew:
+    update_homebrew: true
+    upgrade_all: true
+
+- name: install select Homebrew packages
+  homebrew:
+    name: "elixir git neovim sudo tmux zsh"
