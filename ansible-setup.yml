@@ -42,12 +42,6 @@
       homebrew:
         name: "{{packages}} python-neovim"
 
-    - name: Install Node Version Manager
-      shell: >
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | zsh
-      args:
-        creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
-
 - name: Customize Home Directory
   hosts: localhost
   become: true
@@ -104,6 +98,12 @@
       get_url:
         url: "https://github.com/Takmo.keys"
         dest: "/home/{{username}}/.ssh/authorized_keys"
+
+    - name: Install Node Version Manager
+      shell: >
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | zsh
+      args:
+        creates: "/home/{{username}}/.nvm/nvm.sh"
 
 # shamelessly stolen: https://github.com/vitalk/ansible-secure-ssh/
 - name: Lockdown SSH
