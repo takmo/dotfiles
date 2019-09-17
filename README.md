@@ -6,7 +6,7 @@ To get Fedora setup use this series of commands.
 
 ```
 #!/bin/bash
-dnf install -y wget ansible
+dnf install -y wget ansible sudo
 wget https://github.com/Takmo/dotfiles/raw/master/ansible-setup.yml
 ansible-playbook ansible-setup.yml
 ```
