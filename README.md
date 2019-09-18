@@ -15,7 +15,7 @@ these commands to get everything going on Fedora. Note: if you want to use Arch 
 
 ```
 #!/bin/bash
-dnf install -y ansible sudo wget
+dnf install -y ansible sudo unzip wget
 wget https://github.com/Takmo/dotfiles/archive/master.zip
 unzip master.zip
 ansible-playbook dotfiles-master/site.yml
