@@ -8,7 +8,7 @@
     dest: "/home/{{username}}/{{item}}"
     src: "{{item}}"
   with_items:
-    - ".config/nvim/init.vim"
+    - ".config/"
     - ".tmux.conf"
     - ".vimrc"
     - ".zshrc"
