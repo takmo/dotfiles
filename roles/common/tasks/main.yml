@@ -4,7 +4,6 @@
 - name: create dotfiles
   become_user: "{{username}}"
   copy:
-    force: false
     dest: "/home/{{username}}/{{item}}"
     src: "{{item}}"
   with_items:
