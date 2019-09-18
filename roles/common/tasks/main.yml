@@ -1,30 +1,20 @@
 ---
 # common setup for all profiles
 
-- name: clone dotfiles
+- name: clone dotfiles repo
   become_user: "{{username}}"
   git:
     repo: https://github.com/Takmo/dotfiles.git
     dest: "/home/{{username}}/dotfiles"
 
-- name: create dotfile directories
+- name: create dotfiles
   become_user: "{{username}}"
-  file:
-    state: directory
-    recurse: true
-    path: "/home/{{username}}/{{item}}"
+  src:
+    force: false
+    dest: "/home/{{username}}/{{item}}"
+    src: "{{item}}"
   with_items:
-    - ".config/nvim"
-
-- name: link to all dotfiles
-  become_user: "{{username}}"
-  file:
-    state: link
-    force: true
-    path: "/home/{{username}}/{{item}}"
-    src: "/home/{{username}}/dotfiles/{{item}}"
-  with_items:
-    - ".config/nvim/init.vim"
+    - ".config"
     - ".tmux.conf"
     - ".vimrc"
     - ".zshrc"
