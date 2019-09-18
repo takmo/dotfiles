@@ -14,7 +14,14 @@
     - ".zshrc"
 
 - name: install node version manager
+  become_user: "{{username}}"
   shell: >
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | zsh
   args:
     creates: "/home/{{username}}/.nvm/nvm.sh"
+
+- name: generate keypairs
+  become_user: "{{username}}"
+  openssh_keypair:
+    comment: "{{username}}@do"
+    path: "/home/{{username}}/.ssh/id_rsa"
