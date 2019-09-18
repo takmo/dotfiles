@@ -1,12 +1,6 @@
 ---
 # common setup for all profiles
 
-- name: clone dotfiles repo
-  become_user: "{{username}}"
-  git:
-    repo: https://github.com/Takmo/dotfiles.git
-    dest: "/home/{{username}}/dotfiles"
-
 - name: create dotfiles
   become_user: "{{username}}"
   copy:
@@ -14,7 +8,7 @@
     dest: "/home/{{username}}/{{item}}"
     src: "{{item}}"
   with_items:
-    - ".config"
+    - ".config/nvim/init.vim"
     - ".tmux.conf"
     - ".vimrc"
     - ".zshrc"
