@@ -8,4 +8,4 @@
 
 - name: install select Homebrew packages
   homebrew:
-    name: "elixir git neovim sudo tmux zsh"
+    name: "ack elixir git neovim sudo tmux zsh"

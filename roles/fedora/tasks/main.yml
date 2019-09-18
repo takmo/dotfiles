@@ -8,4 +8,4 @@
 
 - name: install Fedora packages
   dnf:
-    name: "elixir, git, neovim, sudo, tmux, zsh"
+    name: "ack, elixir, git, neovim, sudo, tmux, zsh"

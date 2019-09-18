@@ -8,4 +8,4 @@
 
 - name: install select Pacman packages
   pacman:
-    name: "elixir git neovim python-neovim sudo tmux zsh"
+    name: "ack elixir git neovim python-neovim sudo tmux zsh"
