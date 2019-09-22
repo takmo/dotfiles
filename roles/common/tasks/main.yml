@@ -1,13 +1,19 @@
 ---
 # common setup for all profiles
 
+- name: make config directory
+  become_user: "{{username}}"
+  file:
+    path: "/home/{{username}}/.config"
+    state: directory
+
 - name: create dotfiles
   become_user: "{{username}}"
   copy:
     dest: "/home/{{username}}/{{item}}"
     src: "{{item}}"
   with_items:
-    - ".config/"
+    - ".config/nvim/"
     - ".tmux.conf"
     - ".vimrc"
     - ".zshrc"
