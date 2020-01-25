@@ -2,7 +2,7 @@
 # top-level playbook for everything
 
 - name: setup Arch Linux server workstation
-  hosts: localhost
+  hosts: arch
   become: true
   vars:
     username: "randall"
@@ -12,7 +12,7 @@
     - common
 
 - name: setup Fedora Linux server workstation
-  hosts: fedora
+  hosts: localhost
   become: true
   vars:
     username: "randall"
