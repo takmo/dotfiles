@@ -1,0 +1,67 @@
+" ----------------------------------------------
+" install vim-plug
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" ----------------------------------------------
+" plugins
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'bling/vim-bufferline'
+Plug 'chriskempson/base16-vim'
+Plug 'ctrlpvim/ctrlp.vim'               " Magic Fuzzy Finder
+Plug 'tpope/vim-commentary'             " Comment things
+Plug 'tpope/vim-fugitive'               " Git
+Plug 'tpope/vim-sensible'               " Sensible Defaults
+Plug 'tpope/vim-surround'               " Surround things
+Plug 'vim-airline/vim-airline'          " Fancy bar at bottom of editor
+Plug 'vim-airline/vim-airline-themes'   " Even fancier!
+
+call plug#end()
+
+" ----------------------------------------------
+" mappings
+
+map <C-k> :bp<CR>|       " switch tabs easily
+map <C-j> :bn<CR>|       " switch tabs easily
+nmap ; :|                " Don't need to press shift!
+
+" ----------------------------------------------
+" automatic exeuctions
+
+autocmd BufWritePre * %s/\s\+$//e|    " Delete trailing whitespace on save
+
+" ----------------------------------------------
+"  general settings
+
+set confirm hidden                " do not discard unsaved changes
+set ignorecase smartcase          " search casing rules
+set mouse=n                       " make trackpad not hate me
+set sw=4 sts=4 ts=4 expandtab     " set tabs
+set number
+set cmdheight=2 laststatus=2
+
+" ----------------------------------------------
+"  plugin settings
+
+let g:airline_powerline_fonts=1
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
+"------------------------------------------
+" Look pretty!
+
+set signcolumn=yes
+set termguicolors
+set cursorline
+set background=light
+colorscheme base16-brushtrees
+
+" ----------------------------------------------
+"  all done!

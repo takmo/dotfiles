@@ -1,0 +1,32 @@
+---
+# profile for macOS-specific setup
+
+- name: get user home directory
+  become_user: "{{username}}"
+  shell: >
+         echo $HOME
+  changed_when: false
+  register: home
+
+- name: install homebrew
+  shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  args:
+    warn: no
+
+- name: upgrade existing Homebrew packages
+  homebrew:
+    update_homebrew: true
+    upgrade_all: true
+
+- name: install select Homebrew packages
+  homebrew:
+    name: "ack alacritty git neovim sudo tmux zsh"
+
+- name: link alacritty config
+  become_user: "{{username}}"
+  file:
+    path: "{{home.stdout}}/.{{item}}"
+    src: "{{role_path}}/files/{{item}}"
+    state: link
+  with_items:
+    - "alacritty.yml"

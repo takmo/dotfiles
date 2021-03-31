@@ -1,0 +1,33 @@
+---
+# profile for setting up any shell environment
+
+- name: get user home directory
+  become_user: "{{username}}"
+  shell: >
+         echo $HOME
+  changed_when: false
+  register: home
+
+- name: make config directory
+  become_user: "{{username}}"
+  file:
+    path: "{{home.stdout}}/.config"
+    state: directory
+
+- name: link dotfiles (neovim, zshrc, tmux)
+  become_user: "{{username}}"
+  file:
+    path: "{{home.stdout}}/.{{item}}"
+    src: "{{role_path}}/files/{{item}}"
+    state: link
+  with_items:
+    - "config/nvim"
+    - "vimrc"
+    - "zshrc"
+    - "tmux.conf"
+
+- name: generate keypairs
+  become_user: "{{username}}"
+  openssh_keypair:
+    comment: "{{username}}@{{inventory_hostname_short}}"
+    path: "{{home.stdout}}/.ssh/id_rsa"

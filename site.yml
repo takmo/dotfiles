@@ -1,31 +1,13 @@
 ---
 # top-level playbook for everything
 
-- name: setup Arch Linux server workstation
-  hosts: arch
-  become: true
-  vars:
-    username: "randall"
-  roles:
-    - arch
-    - server
-    - common
-
-- name: setup Fedora Linux server workstation
+- name: setup the workstation
   hosts: localhost
   become: true
   vars:
     username: "randall"
   roles:
-    - fedora
-    - server
-    - common
-
-- name: setup MacOS laptop workstation
-  hosts: macos
-  become: true
-  vars:
-    username: "randall"
-  roles:
-    - osx
-    - common
+    - shell
+  # - macos
+  # - fedora
+  # - arch

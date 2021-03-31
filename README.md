@@ -1,5 +1,7 @@
 # Dotfiles
 
+This README is out of date.
+
 Just looking for some dotfiles? Check out [`roles/common/files`](roles/common/files).
 
 These are the dotfiles I use on a daily basis to do my job and explore my hobbies. My main editor is
