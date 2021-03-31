@@ -8,19 +8,22 @@
   changed_when: false
   register: home
 
-- name: install homebrew
-  shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  args:
-    warn: no
+# - name: install homebrew
+#   become_user: "{{username}}"
+#   shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+#   args:
+#     warn: no
 
 - name: upgrade existing Homebrew packages
+  become_user: "{{username}}"
   homebrew:
     update_homebrew: true
     upgrade_all: true
 
 - name: install select Homebrew packages
+  become_user: "{{username}}"
   homebrew:
-    name: "ack alacritty git neovim sudo tmux zsh"
+    name: "ack,alacritty,git,neovim,sudo,tmux"
 
 - name: link alacritty config
   become_user: "{{username}}"
